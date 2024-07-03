@@ -1,10 +1,8 @@
-
 class BrownNoiseProcessor extends AudioWorkletProcessor {
   constructor() {
     super();
     this.lastOut = 0.0;
   }
-
 
   process(inputs, outputs, parameters) {
     const output = outputs[0];
@@ -12,7 +10,7 @@ class BrownNoiseProcessor extends AudioWorkletProcessor {
       let outputChannel = output[channel];
       for (let i = 0; i < outputChannel.length; i++) {
         let white = Math.random() * 2 - 1;
-        outputChannel[i] = (this.lastOut + (0.03 * white)) / 1.02;
+        outputChannel[i] = (this.lastOut + 0.03 * white) / 1.02;
         this.lastOut = outputChannel[i];
         outputChannel[i] *= 3.5;
       }
@@ -21,7 +19,4 @@ class BrownNoiseProcessor extends AudioWorkletProcessor {
   }
 }
 
-registerProcessor('brown-noise-processor', BrownNoiseProcessor);
-
-
-
+registerProcessor("brown-noise-processor", BrownNoiseProcessor);
